@@ -19,7 +19,7 @@ function knightMoves(start, end) {
     const coordinate = queue.peek();
 
     const square = board.get(Square.coordToStr(coordinate));
-    const { possibleMoves } = square;
+    const possibleMoves = square.getPossibleMoves();
     const { length } = possibleMoves;
 
     for (let i = 0; i < length; i += 1) {

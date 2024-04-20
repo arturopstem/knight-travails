@@ -18,10 +18,6 @@ class Square {
     this.moves = moves;
   }
 
-  get possibleMoves() {
-    return Square.getPossibleMoves([this.row, this.col]);
-  }
-
   toString() {
     return `${this.row}-${this.col}`;
   }
@@ -34,7 +30,8 @@ class Square {
     return row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE;
   }
 
-  static getPossibleMoves([row, col]) {
+  getPossibleMoves() {
+    const { row, col } = this;
     const moves = OFFSETS.map(([rowOffset, colOffset]) => [
       row + rowOffset,
       col + colOffset,
