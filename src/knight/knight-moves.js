@@ -5,7 +5,7 @@ function knightMoves(start, end) {
   if (!Square.isValid(start) || !Square.isValid(end)) {
     return;
   }
-  if (start[0] === end[0] && start[1] === end[1]) {
+  if (Square.areEqual(start, end)) {
     return;
   }
 
