@@ -25,16 +25,12 @@ function knightMoves(start, end) {
     for (let i = 0; i < length; i += 1) {
       const move = possibleMoves[i];
       const moveKey = Square.coordToStr(move);
-      const registeredSquare = board.get(moveKey);
 
-      if (!registeredSquare) {
+      if (!board.has(moveKey)) {
         const newSquare = new Square(move, square, square.moves + 1);
         board.set(`${newSquare}`, newSquare);
-      } else if (square.moves + 1 < registeredSquare.moves) {
-        registeredSquare.previousSquare = square;
-        registeredSquare.moves = square.moves + 1;
+        queue.enqueue(move);
       }
-      queue.enqueue(move);
 
       if (Square.areEqual(move, end)) {
         return;
@@ -51,10 +47,12 @@ function knightMoves(start, end) {
 
   let square = board.get(Square.coordToStr(end));
   console.log(`You made it in ${square.moves} moves! Here's your path:`);
+
   while (square) {
     path.push([square.row, square.col]);
     square = square.previousSquare;
   }
+
   path.reverse();
   path.forEach((point) => console.log(point));
 }
