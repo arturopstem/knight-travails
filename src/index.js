@@ -1,6 +1,7 @@
 import knightMoves from './knight/knight-moves';
 import './style.css';
 
+knightMoves([-1, 4], [2, 8]);
 knightMoves([4, 4], [4, 4]);
 knightMoves([0, 0], [1, 2]);
 knightMoves([0, 0], [3, 3]);
