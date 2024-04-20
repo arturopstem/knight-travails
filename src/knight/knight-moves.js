@@ -11,8 +11,9 @@ function knightMoves(start, end) {
 
   const board = new Map();
   const queue = new Queue();
+  const startingSquare = new Square(start);
 
-  board.set(Square.coordToStr(start), new Square(start));
+  board.set(`${startingSquare}`, startingSquare);
   queue.enqueue(start);
 
   function traversal() {
