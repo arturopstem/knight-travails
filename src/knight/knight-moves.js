@@ -20,9 +20,9 @@ function knightMoves(start, end) {
 
     const square = board.get(Square.coordToStr(coordinate));
     const possibleMoves = square.getPossibleMoves();
-    const { length } = possibleMoves;
+    const numberOfMoves = possibleMoves.length;
 
-    for (let i = 0; i < length; i += 1) {
+    for (let i = 0; i < numberOfMoves; i += 1) {
       const move = possibleMoves[i];
       const moveKey = Square.coordToStr(move);
 
