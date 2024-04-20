@@ -1,5 +1,6 @@
 import Queue from './queue';
 import Square from './square';
+import traversal from './traversal';
 
 function knightMoves(start, end) {
   if (!Square.isValid(start) || !Square.isValid(end)) {
@@ -16,33 +17,7 @@ function knightMoves(start, end) {
   board.set(`${startingSquare}`, startingSquare);
   queue.enqueue(start);
 
-  function traversal() {
-    const coordinate = queue.peek();
-
-    const square = board.get(Square.coordToStr(coordinate));
-    const possibleMoves = square.getPossibleMoves();
-    const numberOfMoves = possibleMoves.length;
-
-    for (let i = 0; i < numberOfMoves; i += 1) {
-      const move = possibleMoves[i];
-      const moveKey = Square.coordToStr(move);
-
-      if (!board.has(moveKey)) {
-        const newSquare = new Square(move, square, square.moves + 1);
-        board.set(`${newSquare}`, newSquare);
-        queue.enqueue(move);
-      }
-
-      if (Square.areEqual(move, end)) {
-        return;
-      }
-    }
-
-    queue.dequeue();
-    traversal();
-  }
-
-  traversal();
+  traversal(queue, board, end);
 
   const path = [];
 
